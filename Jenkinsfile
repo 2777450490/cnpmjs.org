@@ -16,7 +16,7 @@ pipeline {
     }
     
     parameters {
-        string(name: 'image_tag', defaultValue: '', description: '请输入镜像版本号！')
+        string(name: 'TAG_NAME', defaultValue: '', description: '请输入镜像版本号！')
     }
 
     stages {
@@ -30,8 +30,8 @@ pipeline {
         stage ('构建镜像 & 推送镜像') {
             steps {
                 container ('nodejs') {
-                  sh 'docker build -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.image_tag} .'
-                    sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.image_tag}'
+                  sh 'docker build -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.TAG_NAME} .'
+                    sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.TAG_NAME}'
                 }
             }
         }
