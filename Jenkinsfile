@@ -30,8 +30,8 @@ pipeline {
         stage ('构建镜像 & 推送镜像') {
             steps {
                 container ('nodejs') {
-                  sh 'docker build -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.TAG_NAME} .'
-                    sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:${params.TAG_NAME}'
+                    sh "docker build -t ${REGISTRY}/${DOCKERHUB_NAMESPACE}/${APP_NAME}:${params.TAG_NAME} ."
+                    sh "docker push ${REGISTRY}/${DOCKERHUB_NAMESPACE}/${APP_NAME}:${params.TAG_NAME}"
                 }
             }
         }
